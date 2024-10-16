@@ -1,0 +1,70 @@
+﻿<h1>Create New</h1>
+<h4>List Item</h4>
+<hr />
+
+<form action="/ToDoitems/createnew" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    <label for="Title" style="display: block;">Name</label>
+    <input type="text" name="Title" id="Title" value="" style="width: 100%;" />
+    <span id="titleError" style="color: red; display: none;">Please enter a title.</span>
+    <br /><br />
+
+    <label for="Description" style="display: block;">Description</label>
+    <input type="text" name="Description" id="Description" value="" style="width: 100%;" />
+    <span id="descriptionError" style="color: red; display: none;">Please enter a description.</span>
+    <br /><br />
+
+    <label for="Details" style="display: block;">Details (PDF only)</label>
+    <input type="file" name="Details" id="Details" style="width: 100%;" />
+    <span id="detailsError" style="color: red; display: none;">Please upload a PDF file.</span>
+    <br /><br />
+
+    <label for="Deadline" style="display: block;">Deadline</label>
+    <input type="datetime-local" name="Deadline" id="Deadline" style="width: 100%;" />
+    <span id="deadlineError" style="color: red; display: none;">Please select a future date and time.</span>
+    <br /><br />
+
+    <button type="submit" style="background-color: blue; color: white;">Create</button>
+</form>
+
+<script>
+    function validateForm() {
+        let isValid = true;
+
+        document.getElementById("titleError").style.display = "none";
+        document.getElementById("descriptionError").style.display = "none";
+        document.getElementById("detailsError").style.display = "none";
+        document.getElementById("deadlineError").style.display = "none";
+
+        
+        const title = document.getElementById("Title").value.trim();
+        if (!title) {
+            document.getElementById("titleError").style.display = "block";
+            isValid = false;
+        }
+
+      
+        const description = document.getElementById("Description").value.trim();
+        if (!description) {
+            document.getElementById("descriptionError").style.display = "block";
+            isValid = false;
+        }
+
+       
+        const details = document.getElementById("Details").files[0];
+        if (details && details.type !== 'application/pdf') {
+            document.getElementById("detailsError").style.display = "block";
+            isValid = false;
+        }
+
+        
+        const deadlineInput = document.getElementById("Deadline").value;
+        const deadline = new Date(deadlineInput);
+        const now = new Date();
+        if (deadlineInput === "" || deadline <= now) {
+            document.getElementById("deadlineError").style.display = "block";
+            isValid = false;
+        }
+
+        return isValid;
+    }
+</script>

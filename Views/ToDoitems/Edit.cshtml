@@ -1,0 +1,23 @@
+﻿@model ToDo
+
+<h1>Edit Item</h1>
+<hr />
+
+<form action="/ToDoitems/Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="Id" value="@Model.Id" style="width: 100%;" />
+
+    <label for="Title" style="display: block;">Name</label>
+    <input type="text" name="Title" value="@Model.Title" style="width: 100%;" /> <br /><br />
+
+    <label for="Description" style="display: block;">Description</label>
+    <input type="text" name="Description" value="@Model.Description" style="width: 100%;" /><br /><br />
+
+    <label for="Details" style="display: block;">Details</label>
+    <input type="file" name="Details" value="@Model.Details" style="width: 100%;" /><br /><br />
+
+    <label for="Deadline" style="display: block;">Deadline</label>
+    <input type="datetime-local" name="Deadline" value="@Model.Deadline" style="width: 100%;" /><br /><br />
+
+    <a href="/ToDoitems/items"><button type="submit" style="background-color: blue; color: white;">Edit</button></a>
+</form>
+
